@@ -13,10 +13,10 @@ public class AddExpression implements Expression {
     }
 
     public int evaluate(){
-        return 0;
+        return left.evaluate() + right.evaluate();
     }
 
     public String emit(){
-        return "";
+        return "(" + left.emit() + " + " + right.emit() + ")";
     }
 }

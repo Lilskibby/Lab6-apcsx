@@ -8,10 +8,10 @@ public class IntExpression implements Expression{
     }
 
     public int evaluate(){
-        return 0;
+        return value;
     }
 
     public String emit(){
-        return "";
+        return "" + value;
     }
 }

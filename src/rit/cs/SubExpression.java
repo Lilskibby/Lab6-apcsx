@@ -10,10 +10,10 @@ public class SubExpression implements Expression{
     }
 
     public int evaluate(){
-        return 0;
+        return this.left.evaluate() - this.right.evaluate();
     }
 
     public String emit(){
-        return "";
+        return "(" + left.emit() + " - " + right.emit() + ")";
     }
 }
