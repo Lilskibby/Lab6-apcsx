@@ -1,22 +1,20 @@
 package rit.cs;
 
 public class VariableExpression implements Expression{
-    private Expression left;
-    private Expression right;
+    private int value;
 
     private String identifier;
 
-    public VariableExpression(String identifier, Expression left, Expression right){
+    public VariableExpression(String identifier, int value){
         this.identifier = identifier;
-        this.left = left;
-        this.right = right;
+        this.value = value;
     }
 
     public int evaluate(){
-        return 0;
+        return value;
     }
 
     public String emit(){
-        return "";
+        return identifier;
     }
 }

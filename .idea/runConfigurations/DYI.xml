@@ -2,6 +2,7 @@
   <configuration default="false" name="DYI" type="Application" factoryName="Application" nameIsGenerated="true">
     <option name="MAIN_CLASS_NAME" value="rit.stu.DYI" />
     <module name="DYI" />
+    <option name="PROGRAM_PARAMETERS" value="data/symtab1.txt" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="rit.stu.*" />
