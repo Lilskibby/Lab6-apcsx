@@ -1,19 +1,20 @@
 package rit.stu;
 import rit.cs.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
 
 public class DYI {
-    public static void main(String[] args) throws FileNotFoundException {
-        DYI dyi = new DYI();
+
+    private HashMap<String, Integer> hashmap;
+    public static void main(String[] args) throws IOException {
+        DYI dyi = new DYI(args);
         dyi.mainLoop(args);
     }
 
+
     public void mainLoop(String[] args) throws FileNotFoundException {
-        HashMap<String, Integer> hashmap = parseFile(args);
         System.out.println("Derp Your Interpreter v2.0 :)" +
                 "\nSymbol Table:");
         for (Map.Entry<String, Integer> entry : hashmap.entrySet()) {
@@ -39,25 +40,29 @@ public class DYI {
                 System.out.println(d.getMessage());
             }
         }
+        System.out.println("byee");
     }
-    public HashMap<String, Integer> parseFile(String[] args) throws FileNotFoundException {
+    public DYI(String[] args) throws IOException {
         if (args.length == 0) {
             System.out.println("No file argument provided.");
             System.exit(1);
         }
-        HashMap<String, Integer> hashmap = new HashMap<>();
-        File file = null;
+        hashmap = new HashMap<>();
+        FileReader file = null;
         try {
-            file = new File(args[0]);
+            file = new FileReader(args[0]);
         } catch (Exception f) {
             System.out.println(f.getMessage());
             System.exit(1);
         }
-        Scanner scan = new Scanner(file);
-        while (scan.hasNextLine()) {
-            String[] line = scan.nextLine().split(" ");
-            hashmap.put(line[0], Integer.parseInt(line[1]));
+        BufferedReader in = new BufferedReader(file);
+        String line = "";
+        while ((line = in.readLine()) != null) {
+            String[] line1 = line.split(" ");
+            hashmap.put(line1[0], Integer.parseInt(line1[1]));
         }
-        return hashmap;
+        file.close();
+        in.close();
+
     }
 }
