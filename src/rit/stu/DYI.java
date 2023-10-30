@@ -1,35 +1,48 @@
 package rit.stu;
-import rit.cs.*;
 
-import java.io.*;
-import java.lang.reflect.Array;
+import rit.cs.Expression;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class DYI {
 
+    //private hashmap of variables in provided file
     private HashMap<String, Integer> hashmap;
+
+    /**
+     * main method, instatiates new DYI object and calls mainloop.
+     * @param args command line arguments from main method
+     * @throws IOException from reading file in DYI construction- e.g. filenotfound && endofstream
+     */
     public static void main(String[] args) throws IOException {
         DYI dyi = new DYI(args);
-        dyi.mainLoop(args);
+        dyi.mainLoop();
     }
 
 
-    public void mainLoop(String[] args) throws FileNotFoundException {
+    /**
+     * the mainloop is a loop that prompts the user for input.
+     * Prints symbol table state, calls expressions static parse method on input,
+     * and prints exception or result of operation.
+     */
+    public void mainLoop() {
         System.out.println("Derp Your Interpreter v2.0 :)" +
                 "\nSymbol Table:");
         for (Map.Entry<String, Integer> entry : hashmap.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
-        boolean flag = false, otherFlag = false;
         Scanner input = new Scanner(System.in);
-        while (!flag) {
+        while (true) {
             System.out.print("> ");
             String line = input.nextLine();
             //System.out.println(Arrays.toString(line.split(" ")));
             if (line.equals("quit")) {
                 break;
             }
-            ArrayList<String> newInput = new ArrayList<String>();
+            ArrayList<String> newInput = new ArrayList<>();
             Collections.addAll(newInput, (line.split(" ")));
             //System.out.println(newInput);
             try {
@@ -56,7 +69,7 @@ public class DYI {
             System.exit(1);
         }
         BufferedReader in = new BufferedReader(file);
-        String line = "";
+        String line;
         while ((line = in.readLine()) != null) {
             String[] line1 = line.split(" ");
             hashmap.put(line1[0], Integer.parseInt(line1[1]));
